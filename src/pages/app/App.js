@@ -1,11 +1,28 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import butcherImg from '../../images/Billy-Butcher-S3.webp';
 import { Quotes } from '../../components';
+import { getQuote } from '../../services';
 
 export function App(){
+
+    const [quoteState, setQuoteState ] = useState({ quote: 'ok', speaker: 'Speaker'});
+
+    console.log(quoteState);
+
+    const onUpdate = async () => {
+        const quote = await getQuote();
+
+        setQuoteState(quote);
+    }
+
     return (
         <Content>
-            <Quotes quote={'Teste texto'} speaker={'speaker'}/>
+            <Quotes 
+                //quote={quoteState.quote} 
+                //speaker={quoteState.speaker} 
+                {...quoteState}
+                onUpdate={onUpdate}/>
             <ButcherImg src={butcherImg} alt='Billy Butcher stand and look to you.'/>
         </Content>
     );
