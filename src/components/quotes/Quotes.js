@@ -1,24 +1,37 @@
 import styled from 'styled-components';
+import { string, func } from 'prop-types';
+import { Button } from '../../components';
 
-export const Quotes = (props) => {
-
-    const { speaker, quote } = props;
+export const Quotes = ({speaker, quote, onUpdate }) => {
 
     return (
-        <Content>
-            <div>
-                <p>{quote}</p>
-                <p>{speaker}</p>
-                <button>Quote</button>
-            </div>
-        </Content>
+        <Wrapper>
+            <Quote>{quote}</Quote>
+            <Speaker>- {speaker}</Speaker>
+            <Button onClick={onUpdate}>Quote</Button>
+        </Wrapper>
     );
-}
+};
 
-const Content = styled.div`
-    height: 100vh;
-    padding: 0 50px;
+Quotes.propType = {
+    quote: string,
+    speaker: string,
+    onUpdate: func
+};
+
+const Wrapper = styled.div`
+    flex: 1;
     display: flex;
-    justify-content: center;
-    aling-items: center;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const Quote = styled.p`
+    font-size: 2em;
+    margin: 0;
+`;
+
+const Speaker = styled(Quote)`
+    text-align: right;
+    margin-bottom: 50px;
 `;
