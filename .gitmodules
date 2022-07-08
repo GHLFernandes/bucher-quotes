@@ -1,0 +1,3 @@
+[submodule "server-api/butcher-quotes-server"]
+	path = server-api/butcher-quotes-server
+	url = https://github.com/celso-henrique/naruto-quotes-server.git
